@@ -27,6 +27,7 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+	//회원가입
 	public int signUp(MemberDTO member)throws Exception{
 		String sql="INSERT INTO  MEMBER (id, pwd, name, hp, address, card) " + 
 				"VALUES (?, ?, ?, ?, ?, ?)";
@@ -50,12 +51,45 @@ public class MemberDAO {
 			System.out.println("회원등록실패: " + e.getMessage());			
 		}finally{
 			DB_Close.close(rs);
-			DB_Close.close(pstmt);
-			DB_Close.close(stmt);
+			DB_Close.close(pstmt);			
 			conn.close();
 		}
 		
 		return result;
+	}
+	
+	//아이디체크
+	public String IdCheck(String id)throws Exception {
+		String check= null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+				conn = ds.getConnection();
+				String sql = "select id from MEMBER where id=?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+		
+				rs = pstmt.executeQuery();				
+				if(rs.next()) { 
+					check = "false"; //아이디가 중복될때
+				}
+				else {
+					check = "true"; //아이디가 없을때 
+				}if(id.equals("")){
+					check ="empty"; //id가 빈값일때 
+					
+				}
+				
+				
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally{
+			DB_Close.close(rs);
+			DB_Close.close(pstmt);			
+			conn.close();
+		}
+		return check;
 	}
 	
 	

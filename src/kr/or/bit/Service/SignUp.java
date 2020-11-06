@@ -15,7 +15,7 @@ import kr.or.bit.model.DTO.MemberDTO;
 public class SignUp implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception  {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)  {
 		System.out.println("회원가입시작");
 		ActionForward forward = new ActionForward();
 		MemberDAO memberDao = new MemberDAO();
@@ -30,7 +30,12 @@ public class SignUp implements Action {
    		memberDto.setAddress(request.getParameter("address"));
    		memberDto.setCard(request.getParameter("card"));
    		
-   		result = memberDao.signUp(memberDto);
+   		try {
+			result = memberDao.signUp(memberDto);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
    	
    		if(result>0){
    			//회원가입성공
@@ -43,7 +48,7 @@ public class SignUp implements Action {
    		request.setAttribute("msg", msg);	   		
    		
    		forward.setRedirect(false);
-   		forward.setPath("views/main.jsp");
+   		forward.setPath("/WEB-INF/views/main.jsp");
    		
    		return forward;
    		}
