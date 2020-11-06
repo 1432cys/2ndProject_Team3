@@ -32,7 +32,7 @@ public class IdCheck implements Action{
 			}
 			request.setAttribute("result", result);
 			forward = new ActionForward();
-			forward.setPath("/ajaxpath/result.jsp");
+			forward.setPath("/WEB-INF/views/signUPage.jsp");
 			
 		} catch (Exception e) {
 			e.printStackTrace();

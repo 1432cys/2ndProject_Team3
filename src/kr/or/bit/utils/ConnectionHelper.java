@@ -30,6 +30,7 @@ public static Connection getConnection(String dbname) {
 				
 				//2.
 				/*
+				 * 
 				Context initContext = new InitialContext();
 				Context context = 
 					(Context)initContext.lookup("java:/comp/env");

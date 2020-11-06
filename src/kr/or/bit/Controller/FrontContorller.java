@@ -18,7 +18,7 @@ import kr.or.bit.Service.SignUp;
 /**
  * Servlet implementation class FrontContorller
  */
-@WebServlet("/*.do")
+@WebServlet("*.do")
 public class FrontContorller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

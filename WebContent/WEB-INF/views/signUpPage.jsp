@@ -16,7 +16,7 @@
 </body>
 <script>
 $("#id").blur(function() {
-		// id = "id_reg" / name = "Id"
+		// console.log('blur')
 		var user_id = $('#id').val();
 		$.ajax({
 			url : 'idcheck.do',
@@ -26,7 +26,7 @@ $("#id").blur(function() {
 				
 				if (data == "false") {
 						// 1 : 아이디가 중복되는 문구
-						$("#id_check").text("사용중인 아이디입니다 :p");
+						$("#id_check").text("사용중인 아이디입니다");
 						$("#id_check").css("color", "red");
 						$("#reg_submit").attr("disabled", true);
 					} else {
@@ -44,7 +44,7 @@ $("#id").blur(function() {
 							
 						} else {
 							
-							$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다 :) :)");
+							$('#id_check').text("아이디는 소문자와 숫자 4~12자리만 가능합니다");
 							$('#id_check').css('color', 'red');
 							$("#reg_submit").attr("disabled", true);
 						}
