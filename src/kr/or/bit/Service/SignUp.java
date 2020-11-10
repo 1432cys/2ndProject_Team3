@@ -28,8 +28,8 @@ public class SignUp implements Action {
    		memberDto.setName(request.getParameter("name"));
    		memberDto.setHp(request.getParameter("hp"));
    		memberDto.setAddress(request.getParameter("address"));
-   		memberDto.setCard(request.getParameter("card"));
-   		
+   		memberDto.setCard(request.getParameter("card_num"));
+   		System.out.println(memberDto);
    		try {
 			result = memberDao.signUp(memberDto);
 		} catch (Exception e) {
@@ -39,7 +39,7 @@ public class SignUp implements Action {
    	
    		if(result>0){
    			//회원가입성공
-   			msg = "success";
+   			msg = "success";   		
    		
    		} else {
 	   		//회원가입실패

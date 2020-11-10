@@ -6,37 +6,47 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.bit.Action.Action;
 import kr.or.bit.Action.ActionForward;
 import kr.or.bit.model.DAO.MemberDAO;
+import kr.or.bit.model.DTO.MemberDTO;
 
-public class IdCheck implements Action{
+
+public class SignIn implements Action{
+
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		ActionForward forward = null;
-		String userId = request.getParameter("id");
 		
 		MemberDAO memberdao = null;
+		ActionForward forward = null;
+		MemberDTO memberdto = null;		
+		String userId = request.getParameter("id");
+		String Pwd = request.getParameter("pwd");
+	
+	
 		try {
 			memberdao = new MemberDAO();
-	
+			System.out.println(userId+":"+Pwd+"(체크)");
 			String result = memberdao.idCheck(userId);
-	
+			String result2 = memberdao.pwdCheck(Pwd);
+			System.out.println("result:"+result+"/"+"result2:"+result2);
 			if(result.equals("fail")) { //아이디가 있을때
-				result = "fail";
+				if(result2.equals("sucess")) {
+					System.out.println("로그인성공");
+					result="success";
+				}
 
+			}else {
+				System.out.println("로그인실패");
+			
 			}
-			if(result.equals("success")) { //아이디가 없을때
-				result = "success";
-
-			}if(result.equals("empty")) { //아이디가 빈값일때
-				result = "empty";
-
-			}
+			
 			request.setAttribute("result", result);
-			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/signUPage.jsp");
+		
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		forward = new ActionForward();
+		forward.setPath("index.jsp");
 		return forward;
 	}
+
 }

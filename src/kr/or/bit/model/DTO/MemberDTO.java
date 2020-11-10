@@ -8,7 +8,7 @@ public class MemberDTO {
 	private String name;
 	private String hp;
 	private String address;
-	private String card;
+	private String card_num;
 	
 	
 	public String getId() {
@@ -42,16 +42,16 @@ public class MemberDTO {
 		this.address = address;
 	}
 	public String getCard() {
-		return card;
+		return card_num;
 	}
 	public void setCard(String card) {
-		this.card = card;
+		this.card_num = card;
 	}
 	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", pwd=" + pwd + ", name=" + name + ", hp=" + hp + ", address=" + address
-				+ ", card=" + card + "]";
+				+ ", card=" + card_num + "]";
 	}
 
 	

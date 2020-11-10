@@ -19,12 +19,12 @@ $("#id").blur(function() {
 		// console.log('blur')
 		var user_id = $('#id').val();
 		$.ajax({
-			url : 'idcheck.do',
+			url : 'idCheck.ajax',
 			type : 'get',
 			success : function(data) {
 				console.log(data);							
 				
-				if (data == "false") {
+				if (data == "fail") {
 						// 1 : 아이디가 중복되는 문구
 						$("#id_check").text("사용중인 아이디입니다");
 						$("#id_check").css("color", "red");

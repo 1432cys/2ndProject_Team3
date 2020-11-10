@@ -7,32 +7,32 @@ import kr.or.bit.Action.Action;
 import kr.or.bit.Action.ActionForward;
 import kr.or.bit.model.DAO.MemberDAO;
 
-public class IdCheck implements Action{
+public class PwdCheck implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = null;
-		String userId = request.getParameter("id");
+		String userPwd = request.getParameter("pwd");
 		
 		MemberDAO memberdao = null;
 		try {
 			memberdao = new MemberDAO();
 	
-			String result = memberdao.idCheck(userId);
+			String result = memberdao.pwdCheck(userPwd);
 	
-			if(result.equals("fail")) { //아이디가 있을때
+			if(result.equals("fail")) { //비밀번호가 다른경우
 				result = "fail";
 
 			}
-			if(result.equals("success")) { //아이디가 없을때
+			if(result.equals("success")) { //비밀번호 일치
 				result = "success";
 
-			}if(result.equals("empty")) { //아이디가 빈값일때
-				result = "empty";
+			}if(result.equals("fail2")) { //회원이 x
+				result = "fail";
 
 			}
 			request.setAttribute("result", result);
 			forward = new ActionForward();
-			forward.setPath("/WEB-INF/views/signUPage.jsp");
+			forward.setPath("");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
